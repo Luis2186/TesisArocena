@@ -32,3 +32,6 @@ steps:
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+
+- script: dotnet ef database update --project ArocenaAPI --startup-project ArocenaAPI
+  displayName: 'Ejecutar migraciones'
