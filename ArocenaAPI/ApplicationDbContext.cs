@@ -63,6 +63,8 @@ namespace ArocenaAPI
             var rolRrhhId = "152fbd65-8f57-4c13-b8d1-80978d032ba8";
             var rolCajeroId = "d8a09bde-44fa-4874-8f8f-6182fa935123";
 
+            var prueba="prueba";
+
             var rolAdmin = new IdentityRole()
             {
                 Id = rolAdminId,
