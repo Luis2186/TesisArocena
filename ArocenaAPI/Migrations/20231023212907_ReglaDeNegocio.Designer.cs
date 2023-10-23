@@ -4,6 +4,7 @@ using ArocenaAPI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ArocenaAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231023212907_ReglaDeNegocio")]
+    partial class ReglaDeNegocio
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -73,7 +75,7 @@ namespace ArocenaAPI.Migrations
                     b.HasIndex("Nombres", "Apellidos")
                         .IsUnique();
 
-                    b.ToTable("Clientes", (string)null);
+                    b.ToTable("Clientes");
                 });
 
             modelBuilder.Entity("ArocenaAPI.Entidades.Empresa", b =>
@@ -107,7 +109,7 @@ namespace ArocenaAPI.Migrations
                     b.HasIndex("Rut")
                         .IsUnique();
 
-                    b.ToTable("Empresas", (string)null);
+                    b.ToTable("Empresas");
                 });
 
             modelBuilder.Entity("ArocenaAPI.Entidades.Familia", b =>
@@ -134,7 +136,7 @@ namespace ArocenaAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Familia", (string)null);
+                    b.ToTable("Familia");
                 });
 
             modelBuilder.Entity("ArocenaAPI.Entidades.MetodoDePago", b =>
@@ -155,7 +157,7 @@ namespace ArocenaAPI.Migrations
                     b.HasIndex("Nombre")
                         .IsUnique();
 
-                    b.ToTable("MetodosDePagos", (string)null);
+                    b.ToTable("MetodosDePagos");
                 });
 
             modelBuilder.Entity("ArocenaAPI.Entidades.ReglaDeNegocio", b =>
@@ -168,9 +170,6 @@ namespace ArocenaAPI.Migrations
 
                     b.Property<int>("DistanciaMaximaDePedidosKm")
                         .HasColumnType("int");
-
-                    b.Property<DateTime>("FechaDeRegistro")
-                        .HasColumnType("datetime2");
 
                     b.Property<int>("MinimoPedidoLts")
                         .HasColumnType("int");
@@ -195,22 +194,7 @@ namespace ArocenaAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ReglasDeNegocios", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            DistanciaMaximaDePedidosKm = 15,
-                            FechaDeRegistro = new DateTime(2023, 10, 23, 18, 34, 9, 604, DateTimeKind.Local).AddTicks(8648),
-                            MinimoPedidoLts = 200,
-                            PrecioFleteFueraDeZona = 1500.0,
-                            PrecioFleteGasoilMayor500lts = 500.0,
-                            PrecioFleteQuerosenoMayor500lts = 1000.0,
-                            PrecioFleteQuerosenoMenor500lts = 500.0,
-                            PrecioGasoil = 59.390000000000001,
-                            PrecioQueroseno = 59.5
-                        });
+                    b.ToTable("ReglasDeNegocios");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

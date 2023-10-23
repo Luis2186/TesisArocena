@@ -37,6 +37,8 @@ namespace ArocenaAPI
                 }).CreateMapper()
             );
 
+            //localDb
+            //DefaultConnection
             services.AddDbContext<ApplicationDbContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
                 sqlServerOptions => sqlServerOptions.UseNetTopologySuite()

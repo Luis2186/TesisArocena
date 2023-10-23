@@ -2,6 +2,7 @@
 using ArocenaAPI.DTOS.Empresas;
 using ArocenaAPI.DTOS.Familias;
 using ArocenaAPI.DTOS.MetodosDePagos;
+using ArocenaAPI.DTOS.ReglasDeNegocio;
 using ArocenaAPI.DTOS.Usuarios;
 using ArocenaAPI.Entidades;
 using AutoMapper;
@@ -20,7 +21,6 @@ namespace ArocenaAPI.Helpers
             CreateMap<MetodoDePago, MetodoDePagoDTO>().ReverseMap();
             CreateMap<MetodoDePagoCreacionDTO, MetodoDePago>();
 
-
             CreateMap<Empresa, EmpresaDTO>().ReverseMap();
             CreateMap<EmpresaCreacionDTO, Empresa>();
 
@@ -34,7 +34,8 @@ namespace ArocenaAPI.Helpers
             CreateMap<Cliente, ClienteDTO>().ReverseMap();
             CreateMap<ClienteCreacionDTO, Cliente>();
 
-
+            CreateMap<ReglaDeNegocio, ReglaDeNegocioDTO>().ReverseMap();
+            CreateMap<ReglaDeNegocioCreacionDTO, ReglaDeNegocio>().ReverseMap();
 
 
             //CreateMap<Genero, GeneroDTO>().ReverseMap();

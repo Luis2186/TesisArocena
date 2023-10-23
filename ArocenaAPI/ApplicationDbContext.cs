@@ -50,6 +50,7 @@ namespace ArocenaAPI
 
 
 
+
             SeedData(builder);
             base.OnModelCreating(builder);  
         }
@@ -62,8 +63,6 @@ namespace ArocenaAPI
             var rolAdminId = "9aae0b6d-d50c-4d0a-9b90-2a6873e3845d";
             var rolRrhhId = "152fbd65-8f57-4c13-b8d1-80978d032ba8";
             var rolCajeroId = "d8a09bde-44fa-4874-8f8f-6182fa935123";
-
-            var prueba="prueba";
 
             var rolAdmin = new IdentityRole()
             {
@@ -212,6 +211,24 @@ namespace ArocenaAPI
             //    cli1,cli2,cli3,cli4,cli5,cli6,cli7,cli8,cli9,cli10,cli11,cli12
             //});
 
+            //var reglaDeNegocio = new ReglaDeNegocio()
+            //{
+            //    Id=1,
+            //    MinimoPedidoLts = 200,
+            //    DistanciaMaximaDePedidosKm = 15,
+            //    PrecioGasoil = 59.39,
+            //    PrecioQueroseno = 59.5,
+            //    PrecioFleteFueraDeZona = 1500,
+            //    PrecioFleteGasoilMayor500lts = 500,
+            //    PrecioFleteQuerosenoMayor500lts = 1000,
+            //    PrecioFleteQuerosenoMenor500lts = 500
+                
+            //};
+
+            //modelBuilder.Entity<ReglaDeNegocio>().HasData(new List<ReglaDeNegocio>
+            //{
+            //    reglaDeNegocio
+            //});
 
 
             var geometryFactory = NtsGeometryServices.Instance.CreateGeometryFactory(srid: 4326);
@@ -222,8 +239,8 @@ namespace ArocenaAPI
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Empresa> Empresas { get; set; }
         public DbSet<MetodoDePago> MetodosDePagos { get; set; }
+        public DbSet<ReglaDeNegocio> ReglasDeNegocios { get; set; }
 
-        //public DbSet<PeliculasGeneros> PeliculasGeneros { get; set; }
         //public DbSet<SalaDeCine> SalasDeCine { get; set; }
         //public DbSet<PeliculasSalasDeCine> PeliculasSalasDeCines { get; set; }
         //public DbSet<Review> Reviews { get; set; }

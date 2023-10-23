@@ -4,6 +4,7 @@ using ArocenaAPI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ArocenaAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231023213409_ingresoReglaNegocio")]
+    partial class ingresoReglaNegocio
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -73,7 +75,7 @@ namespace ArocenaAPI.Migrations
                     b.HasIndex("Nombres", "Apellidos")
                         .IsUnique();
 
-                    b.ToTable("Clientes", (string)null);
+                    b.ToTable("Clientes");
                 });
 
             modelBuilder.Entity("ArocenaAPI.Entidades.Empresa", b =>
@@ -107,7 +109,7 @@ namespace ArocenaAPI.Migrations
                     b.HasIndex("Rut")
                         .IsUnique();
 
-                    b.ToTable("Empresas", (string)null);
+                    b.ToTable("Empresas");
                 });
 
             modelBuilder.Entity("ArocenaAPI.Entidades.Familia", b =>
@@ -134,7 +136,7 @@ namespace ArocenaAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Familia", (string)null);
+                    b.ToTable("Familia");
                 });
 
             modelBuilder.Entity("ArocenaAPI.Entidades.MetodoDePago", b =>
@@ -155,7 +157,7 @@ namespace ArocenaAPI.Migrations
                     b.HasIndex("Nombre")
                         .IsUnique();
 
-                    b.ToTable("MetodosDePagos", (string)null);
+                    b.ToTable("MetodosDePagos");
                 });
 
             modelBuilder.Entity("ArocenaAPI.Entidades.ReglaDeNegocio", b =>
@@ -195,7 +197,7 @@ namespace ArocenaAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ReglasDeNegocios", (string)null);
+                    b.ToTable("ReglasDeNegocios");
 
                     b.HasData(
                         new

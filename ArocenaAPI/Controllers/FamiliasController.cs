@@ -36,12 +36,12 @@ namespace ArocenaAPI.Controllers
 
                 if (familiaExiste != null) return BadRequest("Ya existe la familia que esta intentando ingresar");
 
-                if (familiaCreacionDTO.ClientesIds == null) return BadRequest("Necesita ingresar un cliente como minimo");
+                if (familiaCreacionDTO.ClientesIds == null) return BadRequest("Necesita ingresar un integrante como minimo");
 
                 var clientes = await context.Clientes.Where(clienteBD => familiaCreacionDTO.ClientesIds.Contains(clienteBD.Id))
                     .Select(x => x.Id).ToListAsync();
 
-                if (familiaCreacionDTO.ClientesIds.Count != clientes.Count) return BadRequest("No existe uno de los clientes enviados");
+                if (familiaCreacionDTO.ClientesIds.Count != clientes.Count) return BadRequest("No existe uno de los integrantes enviados");
 
                 return await Post<FamiliaCreacionDTO, Familia, FamiliaDTO>(familiaCreacionDTO, "obtenerFamilia");
             }
@@ -78,6 +78,8 @@ namespace ArocenaAPI.Controllers
             {
                 var familia = await context.Familia.Include(x=>x.Integrantes).FirstOrDefaultAsync(x => x.Id == id);
 
+                if (familia == null) return BadRequest("No existe la familia que esta buscando");
+
                 return mapper.Map<FamiliaDetalleDTO>(familia);
             }
             catch (Exception)
@@ -92,6 +94,10 @@ namespace ArocenaAPI.Controllers
         {
             try
             {
+                var familia = await context.Familia.FirstOrDefaultAsync(x => x.Id == id);
+
+                if (familia == null) return BadRequest("No existe la familia que intenta actualizar");
+
                 return await Patch<Familia, FamiliaPatchDTO>(id, patchDocument);
             }
             catch (Exception)
@@ -120,12 +126,12 @@ namespace ArocenaAPI.Controllers
         {
             try
             {
-                if (ingresarClientesFamiliaDTO.clientesId == null) return BadRequest("Necesita ingresar un cliente como minimo");
+                if (ingresarClientesFamiliaDTO.clientesId == null) return BadRequest("Necesita ingresar un integrante como minimo");
 
                 var clientes = await context.Clientes.Where(clienteBD => ingresarClientesFamiliaDTO.clientesId.Contains(clienteBD.Id))
                     .Select(x => x).ToListAsync();
 
-                if (ingresarClientesFamiliaDTO.clientesId.Count != clientes.Count) return BadRequest("No existe uno de los clientes enviados");
+                if (ingresarClientesFamiliaDTO.clientesId.Count != clientes.Count) return BadRequest("No existe uno de los integrantes enviados");
 
                 var familiaDB= await context.Familia
                     .Include(x => x.Integrantes)
@@ -133,7 +139,7 @@ namespace ArocenaAPI.Controllers
 
                 if (familiaDB == null) return NotFound();
 
-                if(ingresarClientesFamiliaDTO.clientesId == null) return BadRequest("No existen clientes para ingresar");
+                if(ingresarClientesFamiliaDTO.clientesId == null) return BadRequest("No existen integrantes para ingresar");
 
                 foreach (var cli in clientes)
                 {                  
@@ -143,7 +149,6 @@ namespace ArocenaAPI.Controllers
                 await context.SaveChangesAsync();
                 return NoContent();
 
-                //return await Post<FamiliaCreacionDTO, Familia, FamiliaDTO>(familiaCreacionDTO, "obtenerFamilia");
             }
             catch (Exception)
             {
@@ -157,12 +162,12 @@ namespace ArocenaAPI.Controllers
         {
             try
             {
-                if (ingresarClientesFamiliaDTO.clientesId == null) return BadRequest("Necesita ingresar un cliente como minimo");
+                if (ingresarClientesFamiliaDTO.clientesId == null) return BadRequest("Necesita ingresar un integrante como minimo");
 
                 var clientes = await context.Clientes.Where(clienteBD => ingresarClientesFamiliaDTO.clientesId.Contains(clienteBD.Id))
                     .Select(x => x).ToListAsync();
 
-                if (ingresarClientesFamiliaDTO.clientesId.Count != clientes.Count) return BadRequest("No existe uno de los clientes enviados");
+                if (ingresarClientesFamiliaDTO.clientesId.Count != clientes.Count) return BadRequest("No existe uno de los integrantes enviados");
 
                 var familiaDB = await context.Familia
                     .Include(x => x.Integrantes)
@@ -170,7 +175,7 @@ namespace ArocenaAPI.Controllers
 
                 if (familiaDB == null) return NotFound();
 
-                if (ingresarClientesFamiliaDTO.clientesId == null) return BadRequest("No existen clientes para ingresar");
+                if (ingresarClientesFamiliaDTO.clientesId == null) return BadRequest("No existen integrantes para eliminar");
 
                 foreach (var cli in clientes)
                 {
@@ -180,7 +185,6 @@ namespace ArocenaAPI.Controllers
                 await context.SaveChangesAsync();
                 return NoContent();
 
-                //return await Post<FamiliaCreacionDTO, Familia, FamiliaDTO>(familiaCreacionDTO, "obtenerFamilia");
             }
             catch (Exception)
             {

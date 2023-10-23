@@ -75,6 +75,9 @@ namespace ArocenaAPI.Controllers
         {
             try
             {
+                var existeCliente = context.Clientes.FirstOrDefaultAsync(x => x.Id == id);
+                if (existeCliente == null) return BadRequest("El cliente que busca no existe");
+
                 return await Get<Cliente, ClienteDTO>(id);
             }
             catch (Exception)
@@ -89,6 +92,9 @@ namespace ArocenaAPI.Controllers
         {
             try
             {
+                var existeCliente = context.Clientes.FirstOrDefaultAsync(x => x.Id == id);
+                if (existeCliente == null) return BadRequest("El cliente que quiere actualizar no existe");
+
                 return await Patch<Cliente, ClienteCreacionDTO>(id, patchDocument);
             }
             catch (Exception)

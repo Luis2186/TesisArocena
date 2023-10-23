@@ -44,6 +44,9 @@ namespace ArocenaAPI.Controllers
         {
             try
             {
+                var metodo = await context.MetodosDePagos.FirstOrDefaultAsync(x => x.Id == id);
+                if (metodo == null) return BadRequest("No existe el metodo de pago que esta buscando");
+
                 return await Get<MetodoDePago, MetodoDePagoDTO>(id);
             }
             catch (Exception)
@@ -77,6 +80,8 @@ namespace ArocenaAPI.Controllers
         {
             try
             {
+                var metodo = await context.MetodosDePagos.FirstOrDefaultAsync(x => x.Id == id);
+                if (metodo == null) return BadRequest("No existe el metodo de pago que intenta actualizar");
                 return await Patch<MetodoDePago, MetodoDePagoCreacionDTO>(id, patchDocument);
             }
             catch (Exception)
