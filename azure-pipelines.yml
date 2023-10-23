@@ -39,3 +39,16 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
+- task: DotNetCoreCLI@2
+  displayName: 'Publishing App...'
+  inputs:
+    command: 'publish'
+    publishWebProjects: false
+    projects: $(solution)
+    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory) --runtime win-x64 --self-contained'
+    zipAfterPublish: false
+    modifyOutputPath: false
+    
+- task: PublishBuildArtifacts@1
+  displayName: 'Publicando los artefactos'
+
