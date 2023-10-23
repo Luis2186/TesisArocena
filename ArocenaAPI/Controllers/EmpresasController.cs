@@ -61,9 +61,6 @@ namespace ArocenaAPI.Controllers
         {
             try
             {
-                var existeEmpresa = context.Empresas.FirstOrDefaultAsync(x => x.Id == id);
-                if (existeEmpresa == null) return BadRequest("La empresa que busca no existe");
-
                 return await Get<Empresa, EmpresaDTO>(id);
             }
             catch (Exception)
@@ -78,9 +75,6 @@ namespace ArocenaAPI.Controllers
         {
             try
             {
-                var existeEmpresa = context.Empresas.FirstOrDefaultAsync(x => x.Id == id);
-                if (existeEmpresa == null) return BadRequest("La empresa que quiere actualizar no existe");
-
                 return await Patch<Empresa, EmpresaCreacionDTO>(id, patchDocument);
             }
             catch (Exception)

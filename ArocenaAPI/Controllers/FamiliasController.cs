@@ -94,10 +94,6 @@ namespace ArocenaAPI.Controllers
         {
             try
             {
-                var familia = await context.Familia.FirstOrDefaultAsync(x => x.Id == id);
-
-                if (familia == null) return BadRequest("No existe la familia que intenta actualizar");
-
                 return await Patch<Familia, FamiliaPatchDTO>(id, patchDocument);
             }
             catch (Exception)

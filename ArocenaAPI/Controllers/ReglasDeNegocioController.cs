@@ -45,9 +45,6 @@ namespace ArocenaAPI.Controllers
         {
             try
             {
-                var regla = await context.ReglasDeNegocios.FirstOrDefaultAsync(x => x.Id == id);
-                if (regla == null) return BadRequest("No existe la regla de negocio que esta buscando");
-
                 return await Get<ReglaDeNegocio, ReglaDeNegocioDTO>(id);
             }
             catch (Exception)
@@ -78,9 +75,6 @@ namespace ArocenaAPI.Controllers
         {
             try
             {
-                var regla = await context.ReglasDeNegocios.FirstOrDefaultAsync(x => x.Id == id);
-                if (regla == null) return BadRequest("No existe la regla de negocio que intenta actualizar");
-
                 return await Patch<ReglaDeNegocio, ReglaDeNegocioCreacionDTO>(id, patchDocument);
             }
             catch (Exception)
