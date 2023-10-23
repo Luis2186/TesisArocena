@@ -11,7 +11,7 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
-  proyecto: 'ArocenaAPI/ArocenaAPI.csproj'
+  proyecto: 'Arocena/ArocenaAPI/ArocenaAPI.csproj'
 
 steps:
 - task: UseDotNet@2
