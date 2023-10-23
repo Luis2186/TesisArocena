@@ -28,10 +28,14 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
+- script: dotnet tool install --global dotnet-ef
+  displayName: 'Instalar EF Core Global Tool'
+
+- script: dotnet ef database update --project ArocenaAPI --startup-project ArocenaAPI
+  displayName: 'Ejecutar migraciones'
+
 - task: VSTest@2
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
-- script: dotnet ef database update --project ArocenaAPI --startup-project ArocenaAPI
-  displayName: 'Ejecutar migraciones'
