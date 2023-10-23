@@ -1,0 +1,8 @@
+Usuarios
+
+Base de datos azure
+
+Nombre del servikdor de la base de datos = arocenaapidbserver
+Nombre de la base de datos = ArocenaAPI_db
+Usuario : admarocena
+Password : arocena_123456
